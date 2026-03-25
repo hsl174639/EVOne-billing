@@ -35,7 +35,7 @@ if st.button("开始合并数据"):
                 gp_tx = pd.read_csv(gp_tx_file)
                 gp_tx = gp_tx[gp_tx['payment_status'] == 'Success'].copy()
                 gp_tx['vehicle_plate_number'] = gp_tx['vehicle_plate_number'].astype(str).str.strip().str.upper()
-                gp_tx['Year-Month'] = gp_tx['start_date_time'].astype(str).str[0:7]
+                gp_tx['Year-Month'] = gp_tx['end_date_time'].astype(str).str[0:7]
 
                 gp_merged = pd.merge(gp_tx, crm_gp, left_on='vehicle_plate_number', right_on='Vehicle No.', how='left')
                 gp_merged['Company'] = gp_merged['Company'].fillna('Unmatched GoParkin')
